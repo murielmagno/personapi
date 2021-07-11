@@ -1,4 +1,4 @@
-package br.com.murielmagno.personapi.dto;
+package br.com.murielmagno.personapi.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
