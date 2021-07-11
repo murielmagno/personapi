@@ -1,15 +1,18 @@
 package br.com.murielmagno.personapi.controller;
 
-import br.com.murielmagno.personapi.dto.MessageResponseDTO;
-import br.com.murielmagno.personapi.entity.Person;
-import br.com.murielmagno.personapi.repository.PersonRepository;
+import br.com.murielmagno.personapi.dto.request.PersonDTO;
+import br.com.murielmagno.personapi.dto.response.MessageResponseDTO;
 import br.com.murielmagno.personapi.service.PersonService;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/people")
+@NoArgsConstructor
 public class PersonController {
 
     private PersonService personService;
@@ -21,7 +24,7 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createPerson(@RequestBody Person person) {
-        return personService.createPerson(person);
+    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) {
+        return personService.createPerson(personDTO);
     }
 }
